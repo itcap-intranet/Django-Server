@@ -1,0 +1,26 @@
+{% extends 'courses/lesson_details.html' %}
+
+
+{% block chapter_content %}
+
+    <div class="panel-body tabs-menu-body">
+        <div class="tab-content">
+            {% if chapter.type == 'Video' %}
+                <div>
+                    {% include 'components/course_components/tab_video.html' %}
+                </div>
+            {% endif %}
+            {% if chapter.type == 'Quiz' %}
+                <div>
+                    {% include 'components/course_components/tab_quiz.html' %}
+                </div>
+            {% endif %}
+            {% if chapter.type == 'Assignment' %}
+                <div>
+                    {% include 'components/course_components/tab_assignment.html' %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

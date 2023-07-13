@@ -1,0 +1,38 @@
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <div class="card  box-shadow-0">
+        <div class="card-body pt-0">
+
+            <div class="table-responsive">
+                <table class="table mg-b-0 text-md-nowrap">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Lesson</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for lesson_chapter in lesson_chapters %}
+                    <tr>
+                        <th scope="row">{{ lesson_chapter.id }}</th>
+                        <td>{{ lesson_chapter.name }}</td>
+                        <td>{{ lesson_chapter.type }}</td>
+                        <td>{{ lesson_chapter.lesson.name }}</td>
+                        <td>
+                            <div class="btn-icon-list btn-list">
+                            <a class="btn btn-icon btn-warning me-1" href="/course/edit_lesson_chapter/{{ lesson_chapter.id }}"><i class="fe fe-edit"></i></a>
+                            <a class="btn btn-icon  btn-danger me-1" href="/course/delete_lesson_chapter/{{ lesson_chapter.id }}"><i class="fe fe-trash"></i></a>
+                                </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>

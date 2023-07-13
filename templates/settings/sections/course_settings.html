@@ -1,0 +1,58 @@
+{% extends 'settings/settings.html' %}
+
+ {% block tab_content %}
+    <div class="card custom-card">
+        <div class="card-header">
+            <div class="card-title">Courses</div>
+            <p>Used to customize and manage all course content</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="tx-20 font-weight-semibold d-flex mb-0">Create New Course</p>
+                                    <br/>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'settings/sections/forms/create_course.html' %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="tx-20 font-weight-semibold d-flex mb-0">List Courses</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'settings/sections/forms/list_courses.html' %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

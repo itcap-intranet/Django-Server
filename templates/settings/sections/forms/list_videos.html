@@ -1,0 +1,38 @@
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <div class="card  box-shadow-0">
+        <div class="card-body pt-0">
+
+            <div class="table-responsive">
+                <table class="table mg-b-0 text-md-nowrap">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>File Name</th>
+                        <th>Points</th>
+                        <th>Lesson Chapter</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for video in videos %}
+                    <tr>
+                        <th scope="row">{{ video.id }}</th>
+                        <td>{{ video.url }}</td>
+                        <td>{{ video.points }}</td>
+                        <td>{{ video.chapter.name }} in <b>{{ video.chapter.lesson.name }}</b></td>
+                        <td>
+                            <div class="btn-icon-list btn-list">
+                            <a class="btn btn-icon btn-warning me-1" href="/course/edit_video/{{ video.id }}"><i class="fe fe-edit"></i></a>
+                            <a class="btn btn-icon  btn-danger me-1" href="/course/delete_video/{{ video.id }}"><i class="fe fe-trash"></i></a>
+                                </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>

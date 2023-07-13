@@ -1,0 +1,195 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item tx-15"><a href="/course/">Courses</a></li>
+                <li class="breadcrumb-item active tx-15" aria-current="page">{{ course.name }}</li>
+            </ol>
+        </div>
+        <div class="justify-content-center mt-2">
+
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+    <!-- row -->
+    <div class="container">
+        <div class="row about-main mb-5">
+            <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+                <h1 class="mb-3 font-weight-semibold tx-46"><span class="text-primary tx-56">{{ course.name }}</span>
+                </h1>
+                <p class="leading-normal lead-1">{{ course.headline }}</p>
+                <p class="leading-normal  tx-16">{{ course.description }}</p>
+            </div>
+        </div>
+
+        <div class="row py-5 pt-0">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="text-justify">
+
+                    {% for lesson in course_lessons %}
+                        <div class="card">
+                            <div class="card-header pb-3">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h3>{{ lesson.name }}</h3>
+                                        <p class="tx-12 tx-gray-500 mb-3">{{ lesson.description }} </p>
+                                    </div>
+                                    {% if lesson.lesson_stats.is_completed %}
+
+                                        <div class="col-3 d-flex flex-column flex-fill ht-20">
+                                            {% if lesson.lessonchapter_set.all|length > 0 %}
+                                                <a href="/course/lesson/{{ lesson.id }}/chapter/{{ lesson.lessonchapter_set.all.0.id }}"
+                                                   class="btn btn-white">
+
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         class="side-menu__icon" width="24"
+                                                         height="24" viewBox="0 0 24 24">
+                                                        <path d="M0 0h24v24H0z"
+                                                              fill="none"/>
+                                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                    </svg>
+
+
+                                                    Completed</a>
+                                            {% else %}
+                                                <a>No chapters assigned yet</a>
+                                            {% endif %}
+                                        </div>
+
+                                    {% elif lesson.lesson_stats.progress > 0 %}
+                                        <div class="col-3 d-flex flex-column flex-fill ht-20">
+                                            {% if lesson.lessonchapter_set.all|length > 0 %}
+                                                <a href="/course/lesson/{{ lesson.id }}/chapter/{{ lesson.lessonchapter_set.all.0.id }}"
+                                                   class="btn btn-primary">Continue
+                                                    Chapter</a>
+                                            {% else %}
+                                                <a>No chapters assigned yet</a>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <div class="col-3 right d-flex flex-column flex-fill ht-20">
+                                            {% if lesson.lessonchapter_set.all|length > 0 %}
+                                                <a href="/course/lesson/{{ lesson.id }}/chapter/{{ lesson.lessonchapter_set.all.0.id }}"
+                                                   class="btn btn-primary">Start
+                                                    Chapter</a>
+                                            {% else %}
+                                                <a>No chapters assigned yet</a>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <label class="tx-12">Videos</label>
+                                        <p class="font-weight-bold tx-20">{{ lesson.videos_num }}</p>
+                                    </div><!-- col -->
+                                    <div class="col border-start text-center">
+                                        <label class="tx-12">Quizzes</label>
+                                        <p class="font-weight-bold tx-20">{{ lesson.quizzes_num }}</p>
+                                    </div><!-- col -->
+                                    <div class="col border-start text-center">
+                                        <label class="tx-12">Assignments</label>
+                                        <p class="font-weight-bold tx-20">{{ lesson.assignments_num }}</p>
+                                    </div><!-- col -->
+                                </div><!-- row -->
+
+                                {% if lesson.lesson_stats.progress > 0 %}
+                                    <div class="progress mg-b-20">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated ht-20 wd-{{ lesson.lesson_stats.progress }}p"
+                                             role="progressbar"
+                                             aria-valuenow={{ lesson.lesson_stats.progress }} aria-valuemin="0"
+                                             aria-valuemax="100">
+                                            {{ lesson.lesson_stats.progress }}%
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+
+                {% if course.course_large_image != null %}
+                <div class="row br-5">
+                    <p><img src="/{{ course.course_large_image }}" class="br-5" alt="image" height="100%" width="100%">
+                    </p>
+                </div>
+                {% endif %}
+                <div>
+                    <div class="card p-3">
+                        <div class="card-body">
+
+                            <div class="mb-3 text-center about-team">
+                                {% if course.author.profile_pic_file != null %}
+                                    <img class="rounded-pill" src="/{{ course.author.profile_pic_file }}" alt="image">
+                                {% else %}
+                                    <img class="rounded-pill" src="{% static 'assets/img/faces/6.jpg' %}" alt="image">
+                                {% endif %}
+                            </div>
+                            <div class="tx-16 text-center font-weight-semibold">
+                                {{ course.author.first_name }} {{ course.author.last_name }}
+                            </div>
+                            <div class="tx-14 text-center text-muted mb-3">
+                                Course Author
+                            </div>
+                            <div class="text-center tx-14 mb-3">{{ course.author.bio }}
+                            </div>
+                            <p class="text-center mb-0">
+                                {% if course.author.facebook_url %}
+                                    <a target="_blank" href="{{ course.author.facebook_url }}"><i
+                                            class="fe fe-facebook text-primary me-3"></i></a>
+                                {% endif %}
+                                {% if course.author.instagram_url %}
+                                    <a target="_blank" href="{{ course.author.instagram_url }}"><i
+                                            class="fe fe-instagram text-secondary me-3"></i></a>
+                                {% endif %}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /row -->
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Select2 js-->
+    <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+
+    <!--Internal Counters -->
+    <script src="{% static 'assets/plugins/counters/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/counters/counterup.min.js' %}"></script>
+
+    <!--Internal Time Counter -->
+    <script src="{% static 'assets/plugins/counters/jquery.missofis-countdown.js' %}"></script>
+    <script src="{% static 'assets/plugins/counters/counter.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+{% endblock %}

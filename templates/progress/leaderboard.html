@@ -1,0 +1,84 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <span class="main-content-title mg-b-0 mg-b-lg-1">Leaderboard</span>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row about-main mb-5">
+                        <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+                            <p class="leading-normal lead-1">Leaderboard</p>
+                        </div>
+                    </div>
+
+                 <div class="table-responsive">
+                            <table class="table mg-b-0 text-md-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Daily Points</th>
+                                    <th>Weekly Points</th>
+                                    <th>Monthly Points</th>
+                                    <th>Total Points</th>
+                                    <th>Completed Courses</th>
+                                    <th>Completed Lessons</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user_result in user_results %}
+                                    <tr>
+                                        <th scope="row">{{ user_result.id }}</th>
+                                        <td>{{ user_result.first_name }} {{ user_result.last_name }}</td>
+                                        <td>{{ user_result.daily_points }}</td>
+                                        <td>{{ user_result.weekly_points }}</td>
+                                        <td>{{ user_result.monthly_points }}</td>
+                                        <td>{{ user_result.total_points }}</td>
+                                        <td>{{ user_result.completed_courses_num }}</td>
+                                        <td>{{ user_result.completed_lessons_num }}</td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+       <!-- row closed -->
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Nice-select js-->
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/jquery.nice-select.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/nice-select.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,284 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <span class="main-content-title mg-b-0 mg-b-lg-1">MY LEARNING PROGRESS</span>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <!-- row -->
+    <div class="row">
+        <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                <div class="card px-3 ps-4">
+                    <div class="row index1">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                            <div class="row border-end bd-xs-e-0 p-3">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <div class="circle-icon bg-primary text-center align-self-center overflow-hidden shadow">
+                                        <i class="fe fe-shopping-bag tx-15 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9 py-0">
+                                    <div class="pt-4 pb-3">
+                                        <div class="d-flex">
+                                            <h6 class="mb-2 tx-12">Daily XP</h6>
+                                            {#															<span class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>0.11%</span>#}
+                                        </div>
+                                        <div class="pb-0 mt-0">
+                                            <div class="d-flex">
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{ user_stats.daily_points }}/300</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                            <div class="row border-end bd-md-e-0 bd-xs-e-0 bd-lg-e-0 bd-xl-e-0  p-3">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <div class="circle-icon bg-warning text-center align-self-center overflow-hidden shadow">
+                                        <i class="fe fe-dollar-sign tx-15 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="pt-4 pb-3">
+                                        <div class="d-flex">
+                                            <h6 class="mb-2 tx-12">Total XP</h6>
+                                            {#															<span class="badge bg-danger-transparent text-danger font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>0.23%</span>#}
+                                        </div>
+                                        <div class="pb-0 mt-0">
+                                            <div class="d-flex">
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{ user_stats.total_points }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                            <div class="row border-end bd-xs-e-0  p-3">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <div class="circle-icon bg-secondary text-center align-self-center overflow-hidden shadow">
+                                        <i class="fe fe-external-link tx-15 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="pt-4 pb-3">
+                                        <div class="d-flex">
+                                            <h6 class="mb-2 tx-12">Lessons Completed</h6>
+                                            {#															<span class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>1.57%</span>#}
+                                        </div>
+                                        <div class="pb-0 mt-0">
+                                            <div class="d-flex">
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{ user_stats.completed_lessons_num }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xxl-3">
+                            <div class="row  p-3">
+                                <div class="col-3 d-flex align-items-center justify-content-center">
+                                    <div class="circle-icon bg-info text-center align-self-center overflow-hidden shadow">
+                                        <i class="fe fe-credit-card tx-15 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="pt-4 pb-3">
+                                        <div class="d-flex	">
+                                            <h6 class="mb-2 tx-12">Courses Completed</h6>
+                                            {#															<span class="badge bg-success-transparent text-success font-weight-semibold ms-auto rounded-pill lh-maincard px-2 my-auto"><i class="fa fa-caret-up me-1"></i>0.45%</span>#}
+                                        </div>
+                                        <div class="pb-0 mt-0">
+                                            <div class="d-flex">
+                                                <h4 class="tx-18 font-weight-semibold mb-0">{{ user_stats.completed_courses_num }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12 col-xl-8">
+                        <div class="card custom-card overflow-hidden">
+                            <div class="card-header border-bottom-0 d-flex">
+                                <h3 class="card-title mb-2 ">You're enrolled in the following courses</h3>
+                            </div>
+                            <div class="card-body">
+                                {{ active_courses|length }}
+
+                                <div class="row mb-2 ps-lg-5">
+                                </div>
+                                <div id="statistics2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-12 col-xl-4">
+                        <div class="card">
+                            <div class="card-header bg-transparent pb-0">
+                                <div>
+                                    <h3 class="card-title mb-2">Course Progress</h3>
+                                </div>
+                            </div>
+
+
+                            <div class="card-body mt-0">
+
+                                {% if course_activity_list|length == 0 %}
+                                    <div>
+                                        <p class="mb-0 tx-12 text-muted text-center">Nothing to show here yet. <br/>Start a course to see your progress.</p>
+                                    </div>
+
+                                {% else %}
+
+                                    <div class="latest-timeline mt-4">
+                                        <ul class="timeline mb-0">
+
+                                            {% for course_activity in course_activity_list %}
+                                                <li>
+                                                    <div class="featured_icon1 success">
+                                                    </div>
+                                                </li>
+                                                <li class="mt-0 activity">
+                                                    <div><span
+                                                            class="tx-11 text-muted float-end">{{ course_activity.datetime|date:"M d, Y" }}</span>
+                                                    </div>
+                                                    <a href="javascript:void(0);" class="tx-12 text-dark">
+                                                        <p class="mb-1 font-weight-semibold text-dark tx-13">{{ course_activity.chapter.lesson.course.name }}</p>
+                                                    </a>
+                                                    <p class="text-muted mt-0 mb-0 tx-12">{{ course_activity.chapter.type }}
+                                                        completed </p>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-12 col-xl-12">
+                        <div class="card">
+                            <div class="card-header pb-3">
+                                <h3 class="card-title mb-2">EXPLORE OTHER COURSES</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-xs-12">
+            <div class="card overflow-hidden">
+                <div class="card-header pb-1">
+                    <h3 class="card-title mb-2">Top Learners this week</h3>
+                </div>
+                <div class="card-body p-0 customers mt-1">
+                    <div class="list-group list-lg-group list-group-flush">
+                        {% for learner in top_learners %}
+                            <a href="javascript:void(0);" class="border-0">
+                                <div class="list-group-item list-group-item-action border-0">
+                                    <div class="media mt-0">
+                                        <span class="me-3 bg-primary-transparent text-primary transaction-icon"><i
+                                                class="fe fe-chevrons-right"></i></span>
+                                        <div class="media-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mt-0">
+                                                    <h5 class="mb-1 tx-13 font-weight-sembold text-dark"><span
+                                                            class="me-3">{{ learner.user_id.first_name }} {{ learner.user_id.last_name }}</span>
+
+                                                    </h5>
+                                                    <p class="mb-0 tx-12 text-muted">Total
+                                                        points: {{ learner.total_points }}</p>
+                                                </div>
+                                                <span class="ms-auto wd-25p tx-12">
+															<span class="float-end text-success font-weight-semibold">
+																{{ learner.weekly_points }}
+															</span>
+														</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="card custom-card overflow-hidden">
+                <div class="card-header border-bottom-0">
+                    <div>
+                        <h3 class="card-title mb-0">My Learning Activity</h3> <span
+                            class="d-block tx-12 mb-0 text-muted"></span>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div id="budget"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Chart.Bundle js-->
+    <script src="{% static 'assets/plugins/chartjs/Chart.bundle.min.js' %}"></script>
+
+    <!-- Moment js -->
+    <script src="{% static 'assets/plugins/raphael/raphael.min.js' %}"></script>
+
+    <!-- INTERNAL Apexchart js -->
+    <script src="{% static 'assets/js/apexcharts.js' %}"></script>
+
+    <!--Internal Sparkline js -->
+    <script src="{% static 'assets/plugins/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+
+    <!-- Rating js-->
+    <script src="{% static 'assets/plugins/rating/jquery.rating-stars.js' %}"></script>
+    <script src="{% static 'assets/plugins/rating/jquery.barrating.js' %}"></script>
+
+    <!--Internal  index js -->
+    <script src="{% static 'assets/js/index1.js' %}"></script>
+
+    <!-- Chart-circle js -->
+    <script src="{% static 'assets/js/chart-circle.js' %}"></script>
+
+    <!-- Chart-circle js -->
+    <script src="{% static 'assets/js/circle-progress.min.js' %}"></script>
+
+    <!-- Internal Data tables -->
+    <script src="{% static 'assets/plugins/datatable/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatable/js/dataTables.bootstrap5.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatable/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatable/responsive.bootstrap5.min.js' %}"></script>
+
+    <!-- INTERNAL Select2 js -->
+    <script src="{% static 'assets/plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+{% endblock %}

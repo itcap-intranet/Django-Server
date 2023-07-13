@@ -1,0 +1,101 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <a href="/settings/courses" type="submit" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                <div class="card  box-shadow-0">
+                    <div class="card-header pb-3">
+                        <div class="left-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1">Edit Course</span>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <form class="form-horizontal" method="post" action="{% url 'courses:course-edit' course.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                                       value="{{ course.name }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="headline" name="headline"
+                                       placeholder="Headline" value="{{ course.headline }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="description" name="description"
+                                       placeholder="Description" value="{{ course.description }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Choose Author</label>
+                                <select id="author" name="author" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Author">
+                                    {% for author in authors %}
+                                        <option value="{{ author.id }}"
+                                                {% if author.id == course.author.id %} selected {% endif %}
+                                        >
+                                            {{ author.first_name }} {{ author.last_name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Choose Level</label>
+                                <select id="level" name="level" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Level" data-value="{{ course.level }}">
+                                    <option value="Basic" {% if course.level == "Basic" %} selected {% endif %}>Basic
+                                    </option>
+                                    <option value="Intermediate" {% if course.level == "Intermediate" %}
+                                            selected {% endif %}>Intermediate
+                                    </option>
+                                    <option value="Advanced" {% if course.level == "Advanced" %} selected {% endif %}>
+                                        Advanced
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="course_small_image">Course small image</label>
+                                <p></p>
+                                <input type="file" id="course_small_image" name="course_small_image" class="dropify"
+                                       data-height="200" data-default-file="{{ course.course_small_image }}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="course_large_image">Course large image</label>
+                                <p></p>
+                                <input type="file" id="course_large_image" name="course_large_image" class="dropify"
+                                       data-height="200" data-default-file="{{ course.course_large_image }}"/>
+                            </div>
+
+
+                            <div class="form-group mb-0 mt-3 justify-content-end">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a type="submit" href="/settings/courses" class="btn btn-white">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}

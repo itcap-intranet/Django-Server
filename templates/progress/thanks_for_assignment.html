@@ -1,0 +1,41 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row text-center">
+
+                        <div class="col-md-12">
+                            <div class="main-content-label mg-b-5">
+                                <h4>Thank you for your submission :)</h4>
+                            </div>
+                            <p class="mg-b-20"><h5>We will check it and get back to you soon.</h5></p>
+
+                            {{ lesson.name }}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Nice-select js-->
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/jquery.nice-select.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/nice-select.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+{% endblock %}

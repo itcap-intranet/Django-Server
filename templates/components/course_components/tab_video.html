@@ -1,0 +1,25 @@
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        {% if video.video_file != None %}
+        <video width="100%" height="100%" controls="controls">
+            <source src="/{{ video.video_file }}" type="video/mp4"/>
+        </video>
+        {% else %}
+            No video uploaded in this chapter yet
+        {% endif %}
+        {#                                                        <video width="100%" height="100%" controls="controls">#}
+        {#                                                                <source src="https://stream.mux.com/elp7rCOsIpC70011TOFtrkyPd890000jkhgN8EYTuJG7EE.m3u8" type="video/mp4"/>#}
+        {#                                                        </video>#}
+        {#                                                        <mux-player#}
+        {#                                                                stream-type="on-demand"#}
+        {#                                                                title="{{ lesson.name }}"#}
+        {#                                                                playback-id="elp7rCOsIpC70011TOFtrkyPd890000jkhgN8EYTuJG7EE"#}
+        {#                                                                metadata-video-title="Placeholder (optional)"#}
+        {#                                                                metadata-viewer-user-id="Placeholder (optional)"#}
+        {#                                                                primary-color="#FFFFFF"#}
+        {#                                                                secondary-color="#000000"#}
+        {#                                                                style="width: 100%; height: 100%;"#}
+        {#                                                        ></mux-player>#}
+    </div>
+</div>

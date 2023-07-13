@@ -1,0 +1,72 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <a href="/settings/quizzes" type="submit" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                <div class="card  box-shadow-0">
+                    <div class="card-header pb-3">
+                        <div class="left-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1">Edit Quiz Question</span>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <form class="form-horizontal" method="post"
+                              action="{% url 'courses:quiz-question-edit' quiz_question.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="question" name="question"
+                                       placeholder="Question" value="{{ quiz_question.question }}">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="points" name="points" placeholder="Points"
+                                value="{{ quiz_question.points }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Choose Quiz</label>
+                                <select id="quiz" name="quiz" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Quiz">
+                                    {% for quiz in quizzes %}
+                                        <option value={{ quiz.id }}
+                                        {% if quiz.id == quiz_question.quiz.id %}
+                                            selected
+                                        {% endif %}
+                                        >{{ quiz.chapter.name }}
+                                            - {{ quiz.chapter.lesson.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group mb-0 mt-3 justify-content-end">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a type="submit" href="/settings/quizzes" class="btn btn-white">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

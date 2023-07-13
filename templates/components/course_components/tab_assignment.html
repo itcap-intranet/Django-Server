@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card d-flex">
+            <div class="card-body">
+
+                {% if chapter.chapter_stats.is_completed %}
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">You have already completed this assignment.</h5>
+                            <p class="card-text">Please complete other exercises in this course.</p>
+{#                            <a href="#" class="btn btn-primary">Retake the Quiz</a>#}
+                        </div>
+                    </div>
+                {% else %}
+
+                    <div>
+
+                        <h6 class="card-title mb-1">Assignment</h6>
+                        <p class="mg-b-20">{{ assignment.task }}</p>
+                    </div>
+
+                    {% if assignment != None %}
+                    <form class="form-horizontal" method="post" action="{% url 'progress:submit-assignment' %}"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row mb-4">
+                            <div class="col-sm-12 col-md-12">
+                                <input type="file" class="dropify" id="submission_file" name="submission_file"
+                                       data-height="200"/>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="assignment_id" value="{{ assignment.id }}">
+
+                        <button type="submit" class="btn btn-primary">Submit Assignment</button>
+                    </form>
+                        {% else %}
+                        No assignments for this lesson chapter yet.
+                        {% endif %}
+
+                {% endif %}
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

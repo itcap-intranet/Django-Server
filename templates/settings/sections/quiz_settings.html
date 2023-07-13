@@ -1,0 +1,108 @@
+      {% extends 'settings/settings.html' %}
+
+ {% block tab_content %}
+
+    <div class="card custom-card">
+        <div class="card-header">
+            <div class="card-title">Quizzes</div>
+            <p>Used to customize and manage all quiz content</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="tx-20 font-weight-semibold d-flex mb-0">Create New Quiz</p>
+                                    <br/>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'settings/sections/forms/create_quiz.html' %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="tx-20 font-weight-semibold d-flex mb-0">List Quizzes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'settings/sections/forms/list_quizzes.html' %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+     <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="tx-20 font-weight-semibold d-flex mb-0">Create New Quiz Question</p>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'settings/sections/forms/create_quiz_question.html' %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+     <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex">
+                                <div>
+                                    <p class="tx-20 font-weight-semibold d-flex mb-0">List Quiz Questions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% include 'settings/sections/forms/list_quiz_questions.html' %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

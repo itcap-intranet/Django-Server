@@ -1,0 +1,41 @@
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <div class="card  box-shadow-0">
+        <div class="card-body pt-0">
+
+            <div class="table-responsive">
+                <table class="table mg-b-0 text-md-nowrap">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Headline</th>
+                        <th>Description</th>
+                        <th>Author</th>
+                        <th>Level</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <th scope="row">{{ course.id }}</th>
+                        <td>{{ course.name }}</td>
+                        <td>{{ course.headline }}</td>
+                        <td>{{ course.description }}</td>
+                        <td>{{ course.author.first_name }} {{ course.author.last_name }}</td>
+                        <td>{{ course.level }}</td>
+                        <td>
+                            <div class="btn-icon-list btn-list">
+                            <a class="btn btn-icon btn-warning me-1" href="/course/edit_course/{{ course.id }}"><i class="fe fe-edit"></i></a>
+                            <a class="btn btn-icon  btn-danger me-1" href="/course/delete_course/{{ course.id }}"><i class="fe fe-trash"></i></a>
+                                </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>

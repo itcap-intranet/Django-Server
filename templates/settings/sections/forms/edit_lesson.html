@@ -1,0 +1,68 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <a href="/settings/lessons" type="submit" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                <div class="card  box-shadow-0">
+                    <div class="card-header pb-3">
+                        <div class="left-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1">Edit Lesson</span>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <form class="form-horizontal" method="post" action="{% url 'courses:lesson-edit' lesson.id %}">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ lesson.name }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="description" name="description"
+                                       placeholder="Description" value="{{ lesson.description }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Choose Course</label>
+                                <select id="course" name="course" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Course">
+                                    {% for course in courses %}
+                                        <option value={{ course.id }}
+                                        {% if course.id == lesson.course.id %}
+                                            selected
+                                        {% endif %}
+                                        >{{ course.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group mb-0 mt-3 justify-content-end">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a type="submit" href="/settings/lessons" class="btn btn-white">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

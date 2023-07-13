@@ -1,0 +1,153 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <span class="main-content-title mg-b-0 mg-b-lg-1">All Courses</span>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+    <!-- row -->
+    {% if courses %}
+        <div class="row row-sm">
+            <div class="col-xl-9 col-lg-9 col-md-12">
+                <div class="row row-sm">
+
+                    {% for course in courses %}
+                        <div class="col-md-6 col-lg-6 col-xl-3  col-sm-6">
+                            <div class="card">
+                                <div class="card-body h-100  product-grid6">
+                                    <div class="pro-img-box product-image">
+                                        <a href="/course/{{ course.id }}">
+                                            {% if course.course_small_image != null %}
+                                            <img class=" pic-1" src="/{{ course.course_small_image }}"
+                                                 alt="product-image">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="text-center pt-2">
+                                        <h3 class="h6 mb-2 mt-4 font-weight-bold text-uppercase">{{ course.name }}</h3>
+                                        <span class="tx-15 ms-auto">
+													<i class="ion ion-md-star text-warning"></i>
+													<i class="ion ion-md-star text-warning"></i>
+													<i class="ion ion-md-star text-warning"></i>
+{#                                star 4#}
+                                            {% if course.level == 'Basic' %}
+                                                <i class="ion ion-md-star-outline text-warning"></i>
+                                            {% endif %}
+                                            {% if course.level == 'Intermediate' or course.level == 'Advanced' %}
+                                                <i class="ion ion-md-star text-warning"></i>
+                                            {% endif %}
+                                            {#                                star 5#}
+                                            {% if course.level == 'Basic' or course.level == 'Intermediate' %}
+                                                <i class="ion ion-md-star-outline text-warning"></i>
+                                            {% endif %}
+                                            {% if course.level == 'Advanced' %}
+                                                <i class="ion ion-md-star text-warning"></i>
+                                            {% endif %}
+                                </span>
+                                        <div class="pt-2">
+                                            {% if course.course_stats.is_completed %}
+                                            <a href="/course/{{ course.id }}" class="btn btn-white">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         class="side-menu__icon" width="24"
+                                                         height="24" viewBox="0 0 24 24">
+                                                        <path d="M0 0h24v24H0z"
+                                                              fill="none"/>
+                                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                    </svg>
+                                                    Completed
+                                                </a>
+                                            {% elif course.course_stats.is_started %}
+                                                <a href="/course/{{ course.id }}" class="btn btn-primary">Continue
+                                                    Course</a>
+                                            {% else %}
+                                                <a href="/course/{{ course.id }}" class="btn btn-primary">Start
+                                                    Course</a>
+                                            {% endif %}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 mb-3 mb-md-0">
+                <div class="card">
+                    <div class="card-body p-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search ...">
+                            <span class="input-group-append">
+											<button class="btn btn-primary" type="button">Search</button>
+										</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card">
+                        <div class="card-header border-bottom pt-3 pb-3 mb-0 font-weight-bold text-uppercase">Category
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="form-group">
+                                <label class="form-label">Topic</label>
+                                <select name="beast" id="select-beast" class="form-control  nice-select  custom-select">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Fractions</option>
+                                    <option value="2">Probability</option>
+                                    <option value="3">Statistics</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="form-label">Level</label>
+                                <select name="beast" id="select-beast1"
+                                        class="form-control  nice-select  custom-select">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Basic</option>
+                                    <option value="2">Intermediate</option>
+                                    <option value="3">Advanced</option>
+                                </select>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="form-label">Author</label>
+                                <select name="beast" id="select-beast1"
+                                        class="form-control  nice-select  custom-select">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Basic</option>
+                                    <option value="2">Intermediate</option>
+                                    <option value="3">Advanced</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- row closed -->
+    {% else %}
+        <p>There are no courses available.</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Nice-select js-->
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/jquery.nice-select.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/nice-select.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+{% endblock %}

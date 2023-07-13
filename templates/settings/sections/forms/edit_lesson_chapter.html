@@ -1,0 +1,75 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <a href="/settings/lesson_chapters" type="submit" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                <div class="card  box-shadow-0">
+                    <div class="card-header pb-3">
+                        <div class="left-content">
+                            <span class="main-content-title mg-b-0 mg-b-lg-1">Edit Lesson Chapter</span>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <form class="form-horizontal" method="post"
+                              action="{% url 'courses:lesson-chapter-edit' lesson_chapter.id %}">
+                            {% csrf_token %}
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ lesson_chapter.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Choose Lesson</label>
+                                <select id="lesson" name="lesson" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Lesson">
+                                    {% for lesson in lessons %}
+                                        <option value={{ lesson.id }}
+                                        {% if lesson_chapter.lesson.id == lesson.id %}
+                                            selected
+                                        {% endif %}
+                                        >{{ lesson.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Choose Type</label>
+                                <select id="type" name="type" class="form-control form-select select2"
+                                        data-bs-placeholder="Select Type">
+                                    <option value="Video" {% if lesson_chapter.type == "Video" %} selected {% endif %}>Video</option>
+                                    <option value="Quiz" {% if lesson_chapter.type == "Quiz" %} selected {% endif %}>Quiz</option>
+                                    <option value="Assignment" {% if lesson_chapter.type == "Assignment" %} selected {% endif %}>Assignment</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group mb-0 mt-3 justify-content-end">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <a type="submit" href="/settings/lesson_chapters" class="btn btn-white">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <span class="main-content-title mg-b-0 mg-b-lg-1">My Progress</span>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row about-main mb-5">
+                        <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+                            <p class="leading-normal lead-1">My Assignments</p>
+                        </div>
+                    </div>
+
+                 <div class="table-responsive">
+                            <table class="table mg-b-0 text-md-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Course</th>
+                                    <th>Lesson</th>
+                                    <th>My Assignment</th>
+                                    <th>Status</th>
+                                    <th>Points</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user_assignment in user_assignments %}
+                                    <tr>
+                                        <th scope="row">{{ user_assignment.id }}</th>
+                                        <td>{{ user_assignment.assignment_id.chapter.lesson.course.name }}</td>
+                                        <td>{{ user_assignment.assignment_id.chapter.lesson.name }}</td>
+                                        <td>
+                                            <a class="btn btn-icon  btn-success me-1"
+                                                   href="/{{ user_assignment.submission_file}}" target="_blank"><i
+                                                        class="fe fe-download"></i></a>
+
+                                        <td>Passed</td>
+                                        <td>{{ user_assignment.assignment_id.points }}</td>
+                                        <td>
+                                            <div class="btn-icon-list btn-list">
+                                                <a class="btn btn-icon  btn-danger me-1"
+                                                   href="/progress/delete_user_assignment/{{ user_assignment.id }}"><i
+                                                        class="fe fe-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+       <!-- row closed -->
+
+
+        <!-- row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row about-main mb-5">
+                        <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+                            <p class="leading-normal lead-1">My Quizzes</p>
+                        </div>
+                    </div>
+
+                                           <div class="table-responsive">
+                            <table class="table mg-b-0 text-md-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Course</th>
+                                    <th>Lesson</th>
+                                    <th>Passed</th>
+                                    <th>Total Points</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user_quiz in user_quizzes %}
+                                    <tr>
+                                        <th scope="row">{{ user_quiz.id }}</th>
+                                        <td>{{ user_quiz.quiz_id.chapter.lesson.course.name }}</td>
+                                        <td>{{ user_quiz.quiz_id.chapter.lesson.name }}</td>
+                                        <td>{{ user_quiz.passed }}</td>
+                                        <td>{{ user_quiz.total_points }}</td>
+                                        <td>
+                                            <div class="btn-icon-list btn-list">
+                                                <a class="btn btn-icon  btn-danger me-1"
+                                                   href="/progress/delete_user_quiz/{{ user_quiz.id }}"><i
+                                                        class="fe fe-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <!-- row closed -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Nice-select js-->
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/jquery.nice-select.js' %}"></script>
+    <script src="{% static 'assets/plugins/jquery-nice-select/js/nice-select.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="left-content">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item tx-15"><a href="/course/">Courses</a></li>
+                <li class="breadcrumb-item tx-15"><a href="/course/{{ lesson.course.id }}">{{ lesson.course.name }}</a>
+                </li>
+                <li class="breadcrumb-item active tx-15" aria-current="page">{{ lesson.name }}</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <!-- row -->
+    <div class="row about-main mb-5">
+        <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+            <p class="leading-normal lead-1">{{ lesson.name }}</p>
+        </div>
+    </div>
+
+    <div class="row row-sm">
+
+
+        <div class="col-xl-12">
+            <!-- div -->
+            <div class="card" id="tabs-style4">
+                <div class="card-body">
+                    <div class="text-wrap">
+                        <div class="example">
+                            <div class="d-md-flex">
+                                <div class="">
+                                    <div class="panel panel-primary tabs-style-4">
+                                        <div class="tab-menu-heading">
+                                            <div class="tabs-menu ">
+                                                <!-- Tabs -->
+                                                <ul class="nav panel-tabs me-3">
+                                                    {% for chapter in lesson_chapters %}
+                                                        {% include 'components/course_components/lesson_details_tab_header.html' %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabs-style-4 wd-100p">
+
+                                {% block chapter_content %}{% endblock %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /div -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /row -->
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Internal Select2 js-->
+    <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+
+    <!--Internal Counters -->
+    <script src="{% static 'assets/plugins/counters/waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/counters/counterup.min.js' %}"></script>
+
+    <!--Internal Time Counter -->
+    <script src="{% static 'assets/plugins/counters/jquery.missofis-countdown.js' %}"></script>
+    <script src="{% static 'assets/plugins/counters/counter.js' %}"></script>
+
+    <!-- themecolor JS -->
+    <script src="{% static 'assets/js/themecolor.js' %}"></script>
+
+    <!--Internal Fileuploads js-->
+    <script src="{% static 'assets/plugins/fileuploads/js/fileupload.js' %}"></script>
+    <script src="{% static 'assets/plugins/fileuploads/js/file-upload.js' %}"></script>
+
+    <!--Internal Fancy uploader js-->
+    <script src="{% static 'assets/plugins/fancyuploder/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'assets/plugins/fancyuploder/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'assets/plugins/fancyuploder/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'assets/plugins/fancyuploder/jquery.fancy-fileupload.js' %}"></script>
+    <script src="{% static 'assets/plugins/fancyuploder/fancy-uploader.js' %}"></script>
+
+{% endblock %}
